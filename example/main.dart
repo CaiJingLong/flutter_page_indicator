@@ -93,6 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             align: IndicatorAlign.bottom,
             length: 4,
+            indicatorSpace: 10.0,
           ),
         ),
       ),

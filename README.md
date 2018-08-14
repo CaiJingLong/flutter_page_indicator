@@ -53,5 +53,6 @@ PageIndicatorContainer(
     indicatorSelectorColor: Colors.grey, // selected indicator color
     padding: EdgeInsets.only(bottom: 10.0), // padding with bottom .when align top you should use properties `top:10.0`
     size: 15.0, // indicator size.
+    indicatorSpace: 10.0, // space between circles
     )
 ```

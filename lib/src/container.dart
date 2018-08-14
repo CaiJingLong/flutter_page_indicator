@@ -23,6 +23,8 @@ class PageIndicatorContainer extends StatefulWidget {
 
   final Color indicatorSelectorColor;
 
+  final double indicatorSpace;
+
   const PageIndicatorContainer({
     Key key,
     @required this.pageView,
@@ -32,6 +34,7 @@ class PageIndicatorContainer extends StatefulWidget {
     this.align = IndicatorAlign.bottom,
     this.indicatorColor = Colors.white,
     this.indicatorSelectorColor = Colors.grey,
+    this.indicatorSpace = 8.0,
   }) : super(key: key);
 
   @override
@@ -51,6 +54,7 @@ class _PageContainerState extends State<PageIndicatorContainer> {
         color: widget.indicatorColor,
         selectedColor: widget.indicatorSelectorColor,
         size: widget.size,
+        indicatorSpace: widget.indicatorSpace,
       ),
     );
 

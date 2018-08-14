@@ -11,13 +11,16 @@ class PageIndicator extends StatefulWidget {
 
   final PageController controller;
 
+  final double indicatorSpace;
+
   const PageIndicator(
       {Key key,
       this.color = Colors.white,
       this.selectedColor = Colors.grey,
       this.size = 10.0,
       @required this.controller,
-      @required this.length})
+      @required this.length,
+      this.indicatorSpace = 5.0})
       : super(key: key);
 
   @override
@@ -50,7 +53,7 @@ class _PageIndicatorState extends State<PageIndicator> {
           selectetColor: widget.selectedColor,
           count: widget.length,
           page: widget.controller.page,
-          padding: 3.0,
+          padding: widget.indicatorSpace,
           radius: widget.size / 2,
         ),
       ),
