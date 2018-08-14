@@ -12,7 +12,12 @@ class PageIndicator extends StatefulWidget {
   final PageController controller;
 
   const PageIndicator(
-      {Key key, this.color = Colors.white, this.selectedColor = Colors.grey, this.size = 10.0, @required this.controller, @required this.length})
+      {Key key,
+      this.color = Colors.white,
+      this.selectedColor = Colors.grey,
+      this.size = 10.0,
+      @required this.controller,
+      @required this.length})
       : super(key: key);
 
   @override
