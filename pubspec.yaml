@@ -1,6 +1,6 @@
 name: page_indicator
-description: A new flutter package project.
-version: 0.1.1
+description: flutter pageview indicator, easy to use.
+version: 0.1.2
 author: caijinglong<cjl_spy@163.com>
 email: cjl_spy@163.com
 homepage: https://github.com/CaiJingLong/flutter_page_indicator

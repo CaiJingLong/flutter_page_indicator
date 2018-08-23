@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.1.2] update LICENSE
+
+update LICENSE to apache
+
 ## [0.1.1]
 
 update indicator between space
