@@ -45,7 +45,6 @@ class _PageContainerState extends State<PageIndicatorContainer> {
   @override
   Widget build(BuildContext context) {
     var controller = pageView.controller;
-
     Widget indicator = Container(
       padding: widget.padding,
       child: PageIndicator(
