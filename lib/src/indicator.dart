@@ -37,7 +37,6 @@ class _PageIndicatorState extends State<PageIndicator> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -52,17 +51,13 @@ class _PageIndicatorState extends State<PageIndicator> {
           color: widget.color,
           selectetColor: widget.selectedColor,
           count: widget.length,
-          page: widget.controller.page,
+          page: widget.controller.page ?? controller.initialPage.toDouble(),
           padding: widget.indicatorSpace,
           radius: widget.size / 2,
         ),
       ),
     );
   }
-
-  double get windowWidth => MediaQuery.of(context).size.width;
-
-  double get offsetPercent => widget.controller.offset / windowWidth;
 }
 
 class CirclePainter extends CustomPainter {
