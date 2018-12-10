@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.1.3] fix bug
+
+fix init page bug (#1 issue)
+
 ## [0.1.2] update LICENSE
 
 update LICENSE to apache
