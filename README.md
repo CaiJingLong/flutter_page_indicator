@@ -1,5 +1,7 @@
 # page_indicator
 
+[![pub package](https://img.shields.io/pub/v/page_indicator.svg)](https://pub.dartlang.org/packages/page_indicator)
+
 ## preview
 
 ![image](https://raw.githubusercontent.com/CaiJingLong/some_asset/master/page_indicator1.gif)

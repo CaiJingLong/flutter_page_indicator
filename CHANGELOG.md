@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.1.3+1]
+
+update readme
+
 ## [0.1.3] fix bug
 
 fix init page bug (#1 issue)
