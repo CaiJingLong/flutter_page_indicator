@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+enum IndicatorShape { circle, oval }
+
 class PageIndicator extends StatefulWidget {
   final Color color;
 
@@ -13,6 +15,8 @@ class PageIndicator extends StatefulWidget {
 
   final double indicatorSpace;
 
+  final IndicatorShape indicatorShape;
+
   const PageIndicator(
       {Key key,
       this.color = Colors.white,
@@ -20,7 +24,8 @@ class PageIndicator extends StatefulWidget {
       this.size = 10.0,
       @required this.controller,
       @required this.length,
-      this.indicatorSpace = 5.0})
+      this.indicatorSpace = 5.0,
+      this.indicatorShape = IndicatorShape.circle})
       : super(key: key);
 
   @override
@@ -48,13 +53,14 @@ class _PageIndicatorState extends State<PageIndicator> {
           height: double.infinity,
         ),
         painter: CirclePainter(
-          color: widget.color,
-          selectetColor: widget.selectedColor,
-          count: widget.length,
-          page: widget.controller.page ?? controller.initialPage.toDouble(),
-          padding: widget.indicatorSpace,
-          radius: widget.size / 2,
-        ),
+            color: widget.color,
+            selectetColor: widget.selectedColor,
+            count: widget.length,
+            page: widget.controller.page ?? controller.initialPage.toDouble(),
+            padding: widget.indicatorSpace,
+            radius: widget.size / 2,
+            shape: widget.indicatorShape
+            ),
       ),
     );
   }
@@ -67,17 +73,17 @@ class CirclePainter extends CustomPainter {
   Color selectetColor;
   double radius;
   double padding;
-
+  IndicatorShape shape;
   Paint _circlePaint;
   Paint _selectedPaint;
-  CirclePainter({
-    this.page = 0.0,
-    this.count = 0,
-    this.color = Colors.white,
-    this.selectetColor = Colors.grey,
-    this.radius = 12.0,
-    this.padding = 5.0,
-  }) {
+  CirclePainter(
+      {this.page = 0.0,
+      this.count = 0,
+      this.color = Colors.white,
+      this.selectetColor = Colors.grey,
+      this.radius = 12.0,
+      this.padding = 5.0,
+      this.shape = IndicatorShape.oval}) {
     _circlePaint = Paint();
     _circlePaint.color = color;
 
@@ -96,6 +102,18 @@ class CirclePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    switch (shape) {
+      case IndicatorShape.oval:
+        paintOval(canvas, size);
+        break;
+      case IndicatorShape.circle:
+      default:
+        paintCircle(canvas, size);
+        break;
+    }
+  }
+
+  void paintCircle(Canvas canvas, Size size) {
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
     for (var i = 0; i < count ?? 0; i++) {
@@ -105,6 +123,23 @@ class CirclePainter extends CustomPainter {
 
     var selectedX = startX + page * (radius * 2 + padding);
     canvas.drawCircle(Offset(selectedX, radius), radius, _selectedPaint);
+  }
+
+  void paintOval(Canvas canvas, Size size) {
+    var height = radius / 3;
+    var centerWidth = size.width / 2;
+    var startX = centerWidth - totalWidth / 2;
+    for (var i = 0; i < count ?? 0; i++) {
+      var x = startX + i * (radius * 2 + padding);
+      var rect = Rect.fromLTWH(x, 0, radius, height);
+      var rrect = RRect.fromRectAndRadius(rect, Radius.circular(height));
+      canvas.drawRRect(rrect, _circlePaint);
+    }
+
+    var selectedX = startX + page * (radius * 2 + padding);
+    var rect = Rect.fromLTWH(selectedX, 0, radius, height);
+    var rrect = RRect.fromRectAndRadius(rect, Radius.circular(height));
+    canvas.drawRRect(rrect, _selectedPaint);
   }
 
   @override

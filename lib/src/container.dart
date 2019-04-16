@@ -19,23 +19,26 @@ class PageIndicatorContainer extends StatefulWidget {
 
   final IndicatorAlign align;
 
+  final IndicatorShape shape;
+
   final Color indicatorColor;
 
   final Color indicatorSelectorColor;
 
   final double indicatorSpace;
 
-  const PageIndicatorContainer({
-    Key key,
-    @required this.pageView,
-    @required this.length,
-    this.padding = const EdgeInsets.only(bottom: 15.0),
-    this.size = 12.0,
-    this.align = IndicatorAlign.bottom,
-    this.indicatorColor = Colors.white,
-    this.indicatorSelectorColor = Colors.grey,
-    this.indicatorSpace = 8.0,
-  }) : super(key: key);
+  const PageIndicatorContainer(
+      {Key key,
+      @required this.pageView,
+      @required this.length,
+      this.padding = const EdgeInsets.only(bottom: 15.0),
+      this.size = 12.0,
+      this.align = IndicatorAlign.bottom,
+      this.indicatorColor = Colors.white,
+      this.indicatorSelectorColor = Colors.grey,
+      this.indicatorSpace = 8.0,
+      this.shape = IndicatorShape.circle})
+      : super(key: key);
 
   @override
   _PageContainerState createState() => _PageContainerState();
@@ -48,13 +51,13 @@ class _PageContainerState extends State<PageIndicatorContainer> {
     Widget indicator = Container(
       padding: widget.padding,
       child: PageIndicator(
-        controller: controller,
-        length: widget.length,
-        color: widget.indicatorColor,
-        selectedColor: widget.indicatorSelectorColor,
-        size: widget.size,
-        indicatorSpace: widget.indicatorSpace,
-      ),
+          controller: controller,
+          length: widget.length,
+          color: widget.indicatorColor,
+          selectedColor: widget.indicatorSelectorColor,
+          size: widget.size,
+          indicatorSpace: widget.indicatorSpace,
+          indicatorShape: widget.shape),
     );
 
     var align = widget.align;
