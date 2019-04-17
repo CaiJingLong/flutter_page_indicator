@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_indicator/src/container.dart';
 
 enum IndicatorShape { circle, roundRectangle }
 
@@ -17,16 +18,19 @@ class PageIndicator extends StatefulWidget {
 
   final IndicatorShape indicatorShape;
 
-  const PageIndicator(
-      {Key key,
-      this.color = Colors.white,
-      this.selectedColor = Colors.grey,
-      this.size = 10.0,
-      @required this.controller,
-      @required this.length,
-      this.indicatorSpace = 5.0,
-      this.indicatorShape = IndicatorShape.circle})
-      : super(key: key);
+  final IndicatorAlign align;
+
+  const PageIndicator({
+    Key key,
+    this.color = Colors.white,
+    this.selectedColor = Colors.grey,
+    this.size = 10.0,
+    @required this.controller,
+    @required this.length,
+    this.indicatorSpace = 5.0,
+    this.indicatorShape = IndicatorShape.circle,
+    this.align = IndicatorAlign.bottom,
+  }) : super(key: key);
 
   @override
   _PageIndicatorState createState() => _PageIndicatorState();
@@ -51,12 +55,14 @@ class _PageIndicatorState extends State<PageIndicator> {
     switch (widget.indicatorShape) {
       case IndicatorShape.roundRectangle:
         indicatorPainter = RRectPainter(
-            color: widget.color,
-            selectedColor: widget.selectedColor,
-            count: widget.length,
-            page: widget.controller.page ?? controller.initialPage.toDouble(),
-            padding: widget.indicatorSpace,
-            width: widget.size);
+          color: widget.color,
+          selectedColor: widget.selectedColor,
+          count: widget.length,
+          page: widget.controller.page ?? controller.initialPage.toDouble(),
+          padding: widget.indicatorSpace,
+          width: widget.size,
+          align: widget.align,
+        );
         break;
       case IndicatorShape.circle:
       default:
@@ -89,13 +95,17 @@ class RRectPainter extends CustomPainter {
   double padding;
   Paint _circlePaint;
   Paint _selectedPaint;
-  RRectPainter(
-      {this.page = 0.0,
-      this.count = 0,
-      this.color = Colors.white,
-      this.selectedColor = Colors.grey,
-      this.width = 12.0,
-      this.padding = 5.0}) {
+  IndicatorAlign align;
+
+  RRectPainter({
+    this.page = 0.0,
+    this.count = 0,
+    this.color = Colors.white,
+    this.selectedColor = Colors.grey,
+    this.width = 12.0,
+    this.padding = 5.0,
+    this.align = IndicatorAlign.bottom,
+  }) {
     _circlePaint = Paint();
     _circlePaint.color = color;
 
@@ -116,15 +126,23 @@ class RRectPainter extends CustomPainter {
     var height = width / 3;
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
+    double y = 0;
+    if (align == IndicatorAlign.top) {
+      y = 0;
+    } else if (align == IndicatorAlign.center) {
+      y = (size.height - height) / 2;
+    } else {
+      y = size.height - height;
+    }
     for (var i = 0; i < count ?? 0; i++) {
       var x = startX + i * (width + padding);
-      var rect = Rect.fromLTWH(x, 0, width, height);
+      var rect = Rect.fromLTWH(x, y, width, height);
       var rrect = RRect.fromRectAndRadius(rect, Radius.circular(height));
       canvas.drawRRect(rrect, _circlePaint);
     }
 
     var selectedX = startX + page * (width + padding);
-    var rect = Rect.fromLTWH(selectedX, 0, width, height);
+    var rect = Rect.fromLTWH(selectedX, y, width, height);
     var rrect = RRect.fromRectAndRadius(rect, Radius.circular(height));
     canvas.drawRRect(rrect, _selectedPaint);
   }
