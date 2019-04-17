@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'indicator.dart';
+import 'shape.dart';
 
 enum IndicatorAlign {
   top,
@@ -14,8 +15,6 @@ class PageIndicatorContainer extends StatefulWidget {
   final int length;
 
   final EdgeInsets padding;
-
-  final double size;
 
   final IndicatorAlign align;
 
@@ -31,13 +30,12 @@ class PageIndicatorContainer extends StatefulWidget {
     Key key,
     @required this.pageView,
     @required this.length,
-    this.padding = const EdgeInsets.only(bottom: 15.0, top: 8.0),
-    this.size = 12.0,
+    this.padding = const EdgeInsets.only(bottom: 10.0, top: 10.0),
     this.align = IndicatorAlign.bottom,
     this.indicatorColor = Colors.white,
     this.indicatorSelectorColor = Colors.grey,
     this.indicatorSpace = 8.0,
-    this.shape = IndicatorShape.circle,
+    this.shape = IndicatorShape.defaultCircle,
   }) : super(key: key);
 
   @override
@@ -48,18 +46,15 @@ class _PageContainerState extends State<PageIndicatorContainer> {
   @override
   Widget build(BuildContext context) {
     var controller = pageView.controller;
-    Widget indicator = Container(
-      padding: widget.padding,
-      child: PageIndicator(
-        controller: controller,
-        length: widget.length,
-        color: widget.indicatorColor,
-        selectedColor: widget.indicatorSelectorColor,
-        size: widget.size,
-        indicatorSpace: widget.indicatorSpace,
-        indicatorShape: widget.shape,
-        align: widget.align,
-      ),
+    double height = widget.shape.height;
+    Widget indicator = PageIndicator(
+      controller: controller,
+      length: widget.length,
+      color: widget.indicatorColor,
+      selectedColor: widget.indicatorSelectorColor,
+      indicatorSpace: widget.indicatorSpace,
+      indicatorShape: widget.shape,
+      align: widget.align,
     );
 
     var align = widget.align;
@@ -69,7 +64,7 @@ class _PageContainerState extends State<PageIndicatorContainer> {
         left: 0.0,
         right: 0.0,
         bottom: widget.padding.bottom,
-        height: widget.size,
+        height: height,
         child: indicator,
       );
     } else if (align == IndicatorAlign.top) {
@@ -77,14 +72,14 @@ class _PageContainerState extends State<PageIndicatorContainer> {
         left: 0.0,
         right: 0.0,
         top: widget.padding.top,
-        height: widget.size,
+        height: height,
         child: indicator,
       );
     } else if (align == IndicatorAlign.center) {
       indicator = Center(
         child: Container(
           child: indicator,
-          height: widget.size,
+          height: height,
         ),
       );
     }

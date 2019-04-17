@@ -2,11 +2,13 @@
 
 [![pub package](https://img.shields.io/pub/v/page_indicator.svg)](https://pub.dartlang.org/packages/page_indicator)
 
-## preview
+## Preview
 
 ![image](https://raw.githubusercontent.com/CaiJingLong/some_asset/master/page_indicator1.gif)
 
-## install
+![image](https://github.com/kikt-blog/image/raw/master/img/Kapture%202019-04-17%20at%2020.51.49.gif)
+
+## Install
 
 [see](#-installing-tab-)
 
@@ -15,7 +17,7 @@
 
 ```yaml
 dependencies:
-  page_indicator: ^0.1.3
+  page_indicator: ^0.2.0
 ```
 
 2. Install it
@@ -30,32 +32,48 @@ Alternatively, your editor might support flutter packages get. Check the docs fo
 
 3. Import it
    Now in your Dart code, you can use:
+
 ```dart
 import 'package:page_indicator/page_indicator.dart';
 ```
 
-## use
+## Usage
 
-[see](#-example-tab-)
+[see example file](https://github.com/CaiJingLong/flutter_page_indicator/blob/master/example/main.dart)
+
+or
 
 ```dart
 PageIndicatorContainer(
-    pageView: PageView(
-        children: <Widget>[
-        Column(
-        Text('1'),
-        Text('2'),
-        Text('3'),
-        Text('4'),
-        ],
-        controller: controller,
-    ),
-    align: IndicatorAlign.bottom, // your indicator align with container
-    length: 4, // indicator count
-    indicatorColor: Colors.white, // unselected indicator color
-    indicatorSelectorColor: Colors.grey, // selected indicator color
-    padding: EdgeInsets.only(bottom: 10.0), // padding with bottom .when align top you should use properties `top:10.0`
-    size: 15.0, // indicator size.
-    indicatorSpace: 10.0, // space between circles
-    )
+  pageView: PageView(
+    children: <Widget>[
+      Text("1"),
+      Text('2'),
+      Text('3'),
+      Text('4'),
+    ],
+    controller: controller,
+  ),
+  align: IndicatorAlign.bottom,
+  length: 4,
+  indicatorSpace: 20.0,
+  padding: const EdgeInsets.all(10),
+  indicatorColor: Colors.white,
+  indicatorSelectorColor: Colors.blue,
+  shape: IndicatorShape.circle(size: 12),
+  // shape: IndicatorShape.roundRectangleShape(size: Size.square(12),cornerSize: Size.square(3)),
+  // shape: IndicatorShape.oval(size: Size(12, 8)),
+}
+```
+
+## Migration guide
+
+0.1.x => 0.2.x
+
+```dart
+PageIndicatorContainer(
+  ...
+--  size: 12.0,
+++  shape: IndicatorShape.circle(size: 12),
+)
 ```
