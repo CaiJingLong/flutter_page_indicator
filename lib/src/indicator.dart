@@ -109,7 +109,7 @@ class RRectPainter extends CustomPainter {
     this.width ??= 6.0;
     this.padding ??= 5.0;
   }
-double get totalWidth => count * width + padding * (count - 1);
+  double get totalWidth => count * width + padding * (count - 1);
 
   @override
   void paint(Canvas canvas, Size size) {

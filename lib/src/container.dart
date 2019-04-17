@@ -31,7 +31,7 @@ class PageIndicatorContainer extends StatefulWidget {
       {Key key,
       @required this.pageView,
       @required this.length,
-      this.padding = const EdgeInsets.only(bottom: 15.0),
+      this.padding = const EdgeInsets.only(bottom: 15.0,top: 8.0),
       this.size = 12.0,
       this.align = IndicatorAlign.bottom,
       this.indicatorColor = Colors.white,
