@@ -1,5 +1,13 @@
 # CHANGE_LOG
 
+## [0.2.0]
+
+**breaking change**:
+
+remove size param
+
+add shape param
+
 ## [0.1.3+1]
 
 update readme

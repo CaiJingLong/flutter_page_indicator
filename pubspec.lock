@@ -34,15 +34,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_image_compress:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: "8d8a49dd38c70122f47e055731a5a06b815f0705"
-      resolved-ref: "8d8a49dd38c70122f47e055731a5a06b815f0705"
-      url: "https://github.com/OpenFlutter/flutter_image_compress.git"
-    source: git
-    version: "0.4.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter

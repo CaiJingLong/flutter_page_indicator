@@ -55,36 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: PageIndicatorContainer(
             pageView: PageView(
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Text('1'),
-                    RaisedButton.icon(
-                      icon: Icon(Icons.publish),
-                      label: Text("next page"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return MyHomePage(
-                                title: 'next page $counter',
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                    RaisedButton.icon(
-                      icon: Icon(Icons.refresh),
-                      label: Text(counter.toString()),
-                      onPressed: () {
-                        setState(() {
-                          counter++;
-                        });
-                      },
-                    ),
-                  ],
-                ),
+                Text('1'),
                 Text('2'),
                 Text('3'),
                 Text('4'),
