@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'indicator.dart';
+import 'shape.dart';
 
 enum IndicatorAlign {
   top,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:page_indicator/src/container.dart';
+import 'container.dart';
 
-enum IndicatorShape { circle, roundRectangle }
+import 'shape.dart';
+
+// enum IndicatorShape { circle, roundRectangle }
 
 class PageIndicator extends StatefulWidget {
   final Color color;
@@ -52,37 +54,40 @@ class _PageIndicatorState extends State<PageIndicator> {
   @override
   Widget build(BuildContext context) {
     CustomPainter indicatorPainter;
-    switch (widget.indicatorShape) {
-      case IndicatorShape.roundRectangle:
-        indicatorPainter = RRectPainter(
-          color: widget.color,
-          selectedColor: widget.selectedColor,
-          count: widget.length,
-          page: widget.controller.page ?? controller.initialPage.toDouble(),
-          padding: widget.indicatorSpace,
-          width: widget.size,
-          align: widget.align,
-        );
-        break;
-      case IndicatorShape.circle:
-      default:
-        indicatorPainter = CirclePainter(
-            color: widget.color,
-            selectedColor: widget.selectedColor,
-            count: widget.length,
-            page: widget.controller.page ?? controller.initialPage.toDouble(),
-            padding: widget.indicatorSpace,
-            radius: widget.size / 2);
-        break;
+
+    IndicatorShape shape = widget.indicatorShape;
+
+    if (shape is RoundRectangleShape) {
+      var ratio = shape.ratio;
+      indicatorPainter = RRectPainter(
+        color: widget.color,
+        selectedColor: widget.selectedColor,
+        count: widget.length,
+        page: widget.controller.page ?? controller.initialPage.toDouble(),
+        padding: widget.indicatorSpace,
+        width: widget.size,
+        align: widget.align,
+        ratio: ratio,
+      );
+    } else {
+      indicatorPainter = CirclePainter(
+        color: widget.color,
+        selectedColor: widget.selectedColor,
+        count: widget.length,
+        page: widget.controller.page ?? controller.initialPage.toDouble(),
+        padding: widget.indicatorSpace,
+        radius: widget.size / 2,
+      );
     }
 
     return IgnorePointer(
-        child: CustomPaint(
-      child: Container(
-        height: double.infinity,
+      child: CustomPaint(
+        child: Container(
+          height: double.infinity,
+        ),
+        painter: indicatorPainter,
       ),
-      painter: indicatorPainter,
-    ));
+    );
   }
 }
 
@@ -96,6 +101,7 @@ class RRectPainter extends CustomPainter {
   Paint _circlePaint;
   Paint _selectedPaint;
   IndicatorAlign align;
+  double ratio;
 
   RRectPainter({
     this.page = 0.0,
@@ -105,6 +111,7 @@ class RRectPainter extends CustomPainter {
     this.width = 12.0,
     this.padding = 5.0,
     this.align = IndicatorAlign.bottom,
+    this.ratio,
   }) {
     _circlePaint = Paint();
     _circlePaint.color = color;
@@ -123,7 +130,7 @@ class RRectPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var height = width / 3;
+    var height = width / ratio;
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
     double y = 0;
@@ -160,13 +167,14 @@ class CirclePainter extends CustomPainter {
   double padding;
   Paint _circlePaint;
   Paint _selectedPaint;
-  CirclePainter(
-      {this.page = 0.0,
-      this.count = 0,
-      this.color = Colors.white,
-      this.selectedColor = Colors.grey,
-      this.radius = 12.0,
-      this.padding = 5.0}) {
+  CirclePainter({
+    this.page = 0.0,
+    this.count = 0,
+    this.color = Colors.white,
+    this.selectedColor = Colors.grey,
+    this.radius = 12.0,
+    this.padding = 5.0,
+  }) {
     _circlePaint = Paint();
     _circlePaint.color = color;
 

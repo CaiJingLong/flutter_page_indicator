@@ -30,6 +30,7 @@ Alternatively, your editor might support flutter packages get. Check the docs fo
 
 3. Import it
    Now in your Dart code, you can use:
+
 ```dart
 import 'package:page_indicator/page_indicator.dart';
 ```
@@ -59,3 +60,5 @@ PageIndicatorContainer(
     indicatorSpace: 10.0, // space between circles
     )
 ```
+
+##
