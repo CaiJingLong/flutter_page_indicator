@@ -55,6 +55,7 @@ class PageContainerState extends State<PageIndicatorContainer> {
       indicatorSpace: widget.indicatorSpace,
       indicatorShape: widget.shape,
       align: widget.align,
+      reverse: pageView.reverse,
     );
 
     var align = widget.align;

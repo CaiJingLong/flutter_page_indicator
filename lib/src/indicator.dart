@@ -18,6 +18,8 @@ class PageIndicator extends StatefulWidget {
 
   final IndicatorAlign align;
 
+  final bool reverse;
+
   const PageIndicator({
     Key key,
     this.color = Colors.white,
@@ -27,6 +29,7 @@ class PageIndicator extends StatefulWidget {
     this.indicatorSpace = 5.0,
     this.indicatorShape = IndicatorShape.defaultCircle,
     this.align = IndicatorAlign.bottom,
+    this.reverse = false,
   }) : super(key: key);
 
   @override
