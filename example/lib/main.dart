@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('4'),
               ],
               controller: controller,
+              reverse: true,
             ),
             align: IndicatorAlign.bottom,
             length: 4,

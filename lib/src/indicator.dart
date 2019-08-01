@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'container.dart';
-
 import 'shape.dart';
 
 class PageIndicator extends StatefulWidget {
@@ -55,6 +54,8 @@ class _PageIndicatorState extends State<PageIndicator> {
 
     IndicatorShape shape = widget.indicatorShape;
 
+    bool reverse = widget.reverse;
+
     if (shape is OvalShape) {
       indicatorPainter = OvalPainter(
         color: widget.color,
@@ -86,12 +87,15 @@ class _PageIndicatorState extends State<PageIndicator> {
     }
 
     return IgnorePointer(
-      child: CustomPaint(
-        child: Container(
-          height: shape.height,
+      child: RotatedBox(
+        quarterTurns: reverse ? 2 : 0,
+        child: CustomPaint(
+          child: Container(
+            height: shape.height,
+          ),
+          size: Size.fromHeight(shape.height),
+          painter: indicatorPainter,
         ),
-        size: Size.fromHeight(shape.height),
-        painter: indicatorPainter,
       ),
     );
   }
@@ -224,6 +228,7 @@ class CirclePainter extends CustomPainter {
   double padding;
   Paint _circlePaint;
   Paint _selectedPaint;
+
   CirclePainter({
     this.page = 0.0,
     this.count = 0,
