@@ -39,10 +39,10 @@ class PageIndicatorContainer extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _PageContainerState createState() => _PageContainerState();
+  PageContainerState createState() => PageContainerState();
 }
 
-class _PageContainerState extends State<PageIndicatorContainer> {
+class PageContainerState extends State<PageIndicatorContainer> {
   @override
   Widget build(BuildContext context) {
     var controller = pageView.controller;
@@ -100,5 +100,9 @@ class _PageContainerState extends State<PageIndicatorContainer> {
   bool _onScroll(ScrollNotification notification) {
     setState(() {});
     return false;
+  }
+
+  void forceRefreshState() {
+    this.setState(() {});
   }
 }
