@@ -2,8 +2,15 @@
 
 ## [0.2.1]
 
+New feature:
+
 - Make `PageContainerState` to public.
 - And method `forceRefreshState` to refresh state from outer.
+- Support reverse
+
+Other:
+
+Add a runner example in the repository.
 
 ## [0.2.0]
 
