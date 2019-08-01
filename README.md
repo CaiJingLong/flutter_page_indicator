@@ -17,7 +17,7 @@
 
 ```yaml
 dependencies:
-  page_indicator: ^0.2.0
+  page_indicator: ^0.2.1
 ```
 
 2. Install it
@@ -64,6 +64,19 @@ PageIndicatorContainer(
   // shape: IndicatorShape.roundRectangleShape(size: Size.square(12),cornerSize: Size.square(3)),
   // shape: IndicatorShape.oval(size: Size(12, 8)),
 }
+```
+
+### Force refersh state
+
+```dart
+final key = GlobalKey<PageContainerState>();
+PageIndicatorContainer(
+  key: key,
+  // other ...
+);
+
+// force refersh
+key.currentState.forceRefreshState();
 ```
 
 ## Migration guide
