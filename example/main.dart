@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:page_indicator/page_indicator.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
-      theme: new ThemeData(
+      theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -22,11 +22,13 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   PageController controller;
+
+  GlobalKey<PageContainerState> key = GlobalKey();
 
   @override
   void initState() {
@@ -44,15 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
-      body: new Container(
+      body: Container(
         color: Colors.pink,
         child: Container(
           height: 120.0,
           child: PageIndicatorContainer(
+            key: key,
             pageView: PageView(
               children: <Widget>[
                 Text('1'),
@@ -67,6 +70,13 @@ class _MyHomePageState extends State<MyHomePage> {
             indicatorSpace: 10.0,
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.refresh),
+        tooltip: "force refresh indicator",
+        onPressed: () {
+          key.currentState.forceRefreshState();
+        },
       ),
     );
   }

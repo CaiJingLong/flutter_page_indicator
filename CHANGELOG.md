@@ -1,5 +1,10 @@
 # CHANGE_LOG
 
+## [0.2.1]
+
+- Make `PageContainerState` to public.
+- And method `forceRefreshState` to refresh state from outer.
+
 ## [0.2.0]
 
 **breaking change**:
