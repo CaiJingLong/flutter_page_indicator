@@ -2,6 +2,13 @@
 
 [![pub package](https://img.shields.io/pub/v/page_indicator.svg)](https://pub.dartlang.org/packages/page_indicator)
 
+- [page_indicator](#pageindicator)
+  - [Preview](#preview)
+  - [Install](#install)
+  - [Usage](#usage)
+    - [Force refersh state](#force-refersh-state)
+  - [Migration guide](#migration-guide)
+
 ## Preview
 
 ![image](https://raw.githubusercontent.com/CaiJingLong/some_asset/master/page_indicator1.gif)
