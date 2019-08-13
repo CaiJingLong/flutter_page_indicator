@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
           height: 120.0,
           child: PageIndicatorContainer(
             key: key,
-            pageView: PageView(
+            child: PageView(
               children: <Widget>[
                 Text('1'),
                 Text('2'),
