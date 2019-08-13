@@ -24,7 +24,7 @@
 
 ```yaml
 dependencies:
-  page_indicator: ^0.2.1
+  page_indicator: ^0.3.0
 ```
 
 2. Install it

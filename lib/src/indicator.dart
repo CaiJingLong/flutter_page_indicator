@@ -9,8 +9,6 @@ class PageIndicator extends StatefulWidget {
 
   final int length;
 
-  final PageController controller;
-
   final double indicatorSpace;
 
   final IndicatorShape indicatorShape;
@@ -19,12 +17,16 @@ class PageIndicator extends StatefulWidget {
 
   final bool reverse;
 
+  final double currentPage;
+  final double initialPage;
+
   const PageIndicator({
     Key key,
     this.color = Colors.white,
     this.selectedColor = Colors.grey,
-    @required this.controller,
     @required this.length,
+    @required this.currentPage,
+    this.initialPage = 0,
     this.indicatorSpace = 5.0,
     this.indicatorShape = IndicatorShape.defaultCircle,
     this.align = IndicatorAlign.bottom,
@@ -36,8 +38,6 @@ class PageIndicator extends StatefulWidget {
 }
 
 class _PageIndicatorState extends State<PageIndicator> {
-  PageController get controller => widget.controller;
-
   @override
   void initState() {
     super.initState();
@@ -56,12 +56,14 @@ class _PageIndicatorState extends State<PageIndicator> {
 
     bool reverse = widget.reverse;
 
+    final page = widget.currentPage ?? widget.initialPage;
+
     if (shape is OvalShape) {
       indicatorPainter = OvalPainter(
         color: widget.color,
         selectedColor: widget.selectedColor,
         count: widget.length,
-        page: widget.controller.page ?? controller.initialPage.toDouble(),
+        page: page,
         padding: widget.indicatorSpace,
         size: shape.size,
       );
@@ -70,7 +72,7 @@ class _PageIndicatorState extends State<PageIndicator> {
         color: widget.color,
         selectedColor: widget.selectedColor,
         count: widget.length,
-        page: widget.controller.page ?? controller.initialPage.toDouble(),
+        page: page,
         padding: widget.indicatorSpace,
         size: shape.size,
         cornerSize: shape.cornerSize,
@@ -80,7 +82,7 @@ class _PageIndicatorState extends State<PageIndicator> {
         color: widget.color,
         selectedColor: widget.selectedColor,
         count: widget.length,
-        page: widget.controller.page ?? controller.initialPage.toDouble(),
+        page: page,
         padding: widget.indicatorSpace,
         radius: shape.size / 2,
       );

@@ -10,7 +10,7 @@ enum IndicatorAlign {
 }
 
 class PageIndicatorContainer extends StatefulWidget {
-  final PageView pageView;
+  final Widget child;
 
   final int length;
 
@@ -28,7 +28,7 @@ class PageIndicatorContainer extends StatefulWidget {
 
   const PageIndicatorContainer({
     Key key,
-    @required this.pageView,
+    @required this.child,
     @required this.length,
     this.padding = const EdgeInsets.only(bottom: 10.0, top: 10.0),
     this.align = IndicatorAlign.bottom,
@@ -43,12 +43,21 @@ class PageIndicatorContainer extends StatefulWidget {
 }
 
 class PageContainerState extends State<PageIndicatorContainer> {
+  double currentPage;
+
   @override
   Widget build(BuildContext context) {
-    var controller = pageView.controller;
+    if (widget.child is! PageView) {
+      return widget.child;
+    }
+
     double height = widget.shape.height;
+
+    final initPage = pageView?.controller?.initialPage ?? 0.0;
+
+    final currentPage = this.currentPage ?? initPage.toDouble();
+
     Widget indicator = PageIndicator(
-      controller: controller,
       length: widget.length,
       color: widget.indicatorColor,
       selectedColor: widget.indicatorSelectorColor,
@@ -56,6 +65,8 @@ class PageContainerState extends State<PageIndicatorContainer> {
       indicatorShape: widget.shape,
       align: widget.align,
       reverse: pageView.reverse,
+      currentPage: currentPage,
+      initialPage: initPage.toDouble(),
     );
 
     var align = widget.align;
@@ -96,10 +107,14 @@ class PageContainerState extends State<PageIndicatorContainer> {
     );
   }
 
-  PageView get pageView => widget.pageView;
+  PageView get pageView => widget.child;
 
   bool _onScroll(ScrollNotification notification) {
-    setState(() {});
+    if (notification is ScrollUpdateNotification) {
+      final PageMetrics metrics = notification.metrics;
+      currentPage = metrics.page;
+      setState(() {});
+    }
     return false;
   }
 
