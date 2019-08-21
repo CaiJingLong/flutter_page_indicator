@@ -52,7 +52,7 @@ or
 
 ```dart
 PageIndicatorContainer(
-  pageView: PageView(
+  child: PageView(
     children: <Widget>[
       Text("1"),
       Text('2'),
