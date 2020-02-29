@@ -1,6 +1,6 @@
 name: page_indicator
 description: flutter pageview indicator, easy to use. Custom location, size, but only circular.
-version: 0.3.0
+version: 0.3.1
 author: caijinglong<cjl_spy@163.com>
 email: cjl_spy@163.com
 homepage: https://github.com/CaiJingLong/flutter_page_indicator

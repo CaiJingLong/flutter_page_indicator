@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.3.1]
+
+Fixes: [#20](https://github.com/CaiJingLong/flutter_page_indicator/pull/20).
+
 ## [0.3.0]
 
 **Breaking change**: Replace the pageView property to child. But when the child is not a PageView, there is no Indicator.

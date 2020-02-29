@@ -2,7 +2,7 @@
 
 [![pub package](https://img.shields.io/pub/v/page_indicator.svg)](https://pub.dartlang.org/packages/page_indicator)
 
-- [page_indicator](#pageindicator)
+- [page_indicator](#page_indicator)
   - [Preview](#preview)
   - [Install](#install)
   - [Usage](#usage)
