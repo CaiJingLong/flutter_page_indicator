@@ -21,11 +21,11 @@ class PageIndicator extends StatefulWidget {
   final double initialPage;
 
   const PageIndicator({
-    Key key,
+    Key? key,
     this.color = Colors.white,
     this.selectedColor = Colors.grey,
-    @required this.length,
-    @required this.currentPage,
+    required this.length,
+    required this.currentPage,
     this.initialPage = 0,
     this.indicatorSpace = 5.0,
     this.indicatorShape = IndicatorShape.defaultCircle,
@@ -50,13 +50,13 @@ class _PageIndicatorState extends State<PageIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    CustomPainter indicatorPainter;
+    CustomPainter? indicatorPainter;
 
     IndicatorShape shape = widget.indicatorShape;
 
     bool reverse = widget.reverse;
 
-    final page = widget.currentPage ?? widget.initialPage;
+    final page = widget.currentPage;
 
     if (shape is OvalShape) {
       indicatorPainter = OvalPainter(
@@ -109,9 +109,9 @@ class OvalPainter extends CustomPainter {
   Color color;
   Color selectedColor;
   double padding;
-  Paint _circlePaint;
-  Paint _selectedPaint;
-  Size size;
+  late Paint _circlePaint;
+  late Paint _selectedPaint;
+  Size? size;
 
   OvalPainter({
     this.page = 0.0,
@@ -127,22 +127,17 @@ class OvalPainter extends CustomPainter {
     _selectedPaint = Paint();
     _selectedPaint.color = selectedColor;
 
-    this.page ??= 0.0;
-    this.count ??= 0;
-    this.color ??= Colors.white;
-    this.selectedColor ??= Colors.grey;
     this.size ??= Size(12, 12);
-    this.padding ??= 5.0;
   }
-  double get totalWidth => count * size.width + padding * (count - 1);
+  double get totalWidth => count * size!.width + padding * (count - 1);
 
   @override
   void paint(Canvas canvas, Size size) {
-    var height = this.size.height;
-    var width = this.size.width;
+    var height = this.size!.height;
+    var width = this.size!.width;
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
-    for (var i = 0; i < count ?? 0; i++) {
+    for (var i = 0; i < count; i++) {
       var x = startX + i * (width + padding);
       var rect = Rect.fromLTWH(x, 0, width, height);
       canvas.drawOval(rect, _circlePaint);
@@ -163,10 +158,10 @@ class RRectPainter extends CustomPainter {
   Color color;
   Color selectedColor;
   double padding;
-  Paint _circlePaint;
-  Paint _selectedPaint;
-  Size size;
-  Size cornerSize;
+  late Paint _circlePaint;
+  late Paint _selectedPaint;
+  Size? size;
+  Size? cornerSize;
 
   RRectPainter({
     this.page = 0.0,
@@ -183,27 +178,22 @@ class RRectPainter extends CustomPainter {
     _selectedPaint = Paint();
     _selectedPaint.color = selectedColor;
 
-    this.page ??= 0.0;
-    this.count ??= 0;
-    this.color ??= Colors.white;
-    this.selectedColor ??= Colors.grey;
     this.size ??= Size(12, 12);
-    this.padding ??= 5.0;
   }
-  double get totalWidth => count * size.width + padding * (count - 1);
+  double get totalWidth => count * size!.width + padding * (count - 1);
 
   @override
   void paint(Canvas canvas, Size size) {
-    var height = this.size.height;
-    var width = this.size.width;
+    var height = this.size!.height;
+    var width = this.size!.width;
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
-    for (var i = 0; i < count ?? 0; i++) {
+    for (var i = 0; i < count; i++) {
       var x = startX + i * (width + padding);
       var rect = Rect.fromLTWH(x, 0, width, height);
       var rrect = RRect.fromRectAndRadius(
         rect,
-        Radius.elliptical(cornerSize.width, cornerSize.height),
+        Radius.elliptical(cornerSize!.width, cornerSize!.height),
       );
       canvas.drawRRect(rrect, _circlePaint);
     }
@@ -212,7 +202,7 @@ class RRectPainter extends CustomPainter {
     var rect = Rect.fromLTWH(selectedX, 0, width, height);
     var rrect = RRect.fromRectAndRadius(
       rect,
-      Radius.elliptical(cornerSize.width, cornerSize.height),
+      Radius.elliptical(cornerSize!.width, cornerSize!.height),
     );
     canvas.drawRRect(rrect, _selectedPaint);
   }
@@ -228,8 +218,8 @@ class CirclePainter extends CustomPainter {
   Color selectedColor;
   double radius;
   double padding;
-  Paint _circlePaint;
-  Paint _selectedPaint;
+  late Paint _circlePaint;
+  late Paint _selectedPaint;
 
   CirclePainter({
     this.page = 0.0,
@@ -244,13 +234,6 @@ class CirclePainter extends CustomPainter {
 
     _selectedPaint = Paint();
     _selectedPaint.color = selectedColor;
-
-    this.page ??= 0.0;
-    this.count ??= 0;
-    this.color ??= Colors.white;
-    this.selectedColor ??= Colors.grey;
-    this.radius ??= 12.0;
-    this.padding ??= 5.0;
   }
 
   double get totalWidth => count * radius * 2 + padding * (count - 1);
@@ -259,7 +242,7 @@ class CirclePainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var centerWidth = size.width / 2;
     var startX = centerWidth - totalWidth / 2;
-    for (var i = 0; i < count ?? 0; i++) {
+    for (var i = 0; i < count; i++) {
       var x = startX + i * (radius * 2 + padding) + radius;
       canvas.drawCircle(Offset(x, radius), radius, _circlePaint);
     }
