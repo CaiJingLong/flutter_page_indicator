@@ -13,3 +13,5 @@ ios/Runner/GeneratedPluginRegistrant.*
 flutter_export_environment.sh
 
 .vscode/settings.json
+
+.env

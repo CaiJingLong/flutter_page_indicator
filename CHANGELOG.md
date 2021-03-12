@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.4.1]
+
+A problem for null safety.
+
 ## [0.4.0]
 
 Null safety version.
