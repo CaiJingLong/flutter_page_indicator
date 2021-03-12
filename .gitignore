@@ -11,3 +11,5 @@ ios/Runner/GeneratedPluginRegistrant.*
 
 *.lock
 flutter_export_environment.sh
+
+.vscode/settings.json
