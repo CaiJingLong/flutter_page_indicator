@@ -1,5 +1,9 @@
 # CHANGE_LOG
 
+## [0.4.0]
+
+Null safety version.
+
 ## [0.3.1]
 
 Fixes: [#20](https://github.com/CaiJingLong/flutter_page_indicator/pull/20).

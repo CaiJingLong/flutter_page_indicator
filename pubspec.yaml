@@ -1,6 +1,6 @@
 name: page_indicator
 description: flutter pageview indicator, easy to use. Custom location, size, but only circular.
-version: 0.3.1
+version: 0.4.0
 author: caijinglong<cjl_spy@163.com>
 email: cjl_spy@163.com
 homepage: https://github.com/CaiJingLong/flutter_page_indicator
@@ -44,5 +44,5 @@ flutter:
   # https://flutter.io/custom-fonts/#from-packages
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: '>=0.3.0 <2.0.0'
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
